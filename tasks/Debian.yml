@@ -1,0 +1,20 @@
+---
+  - name: Accept Oracle license
+    debconf: name="oracle-java{{ java.version }}-installer" question="shared/accepted-oracle-license-v1-1" value="true" vtype="select"
+    sudo: True
+
+  - name: Install python software properties
+    apt: name=python-software-properties state=present update_cache=True
+    sudo: True
+
+  - name: Add Oracle repository
+    command: add-apt-repository ppa:webupd8team/java --yes
+    sudo: True
+
+  - name: Install Oracle Java
+    apt: name="oracle-java{{ java.version }}-installer" update_cache=True force=yes
+    sudo: True
+
+  - name: Set Java defaults 
+    apt: name="oracle-java{{ java.version }}-set-default" update_cache=True force=yes
+    sudo: True

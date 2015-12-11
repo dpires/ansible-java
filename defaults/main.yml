@@ -1,2 +1,3 @@
 ---
-# defaults file for ansible-java
+java:
+  version: 8
